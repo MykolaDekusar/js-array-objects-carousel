@@ -34,8 +34,7 @@
     display: block;
 }
 
-.prev,
-.next {
+.prev, .next {
     width: 20px;
     height: 20px;
     margin: 10px 0;
@@ -78,28 +77,4 @@
     bottom: 35%;
     left: 50%;
     transform: translate(-50%) rotate(135deg);
-}
-
-/********** TEXT SETTINGS ***********/
-
-.item h1 {
-    position: absolute;
-    right: 1rem;
-    bottom: 2.5rem;
-    padding: 1rem;
-}
-
-.item p {
-    position: absolute;
-    padding: 1rem;
-    bottom: 0.3rem;
-    font-weight: 600;
-}
-
-.white {
-    color: white;
-}
-
-.black {
-    color: black;
 }

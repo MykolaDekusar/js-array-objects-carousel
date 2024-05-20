@@ -35,6 +35,7 @@ const prevImg = document.querySelector('.prev');
 const thumbs = document.querySelector('.thumbs');
 let counter = 0;
 let check = false;
+let previousActive;
 
 
 //creating thumbs elements
@@ -48,9 +49,16 @@ images.forEach((element) => {
 
 thumbs.addEventListener('click', (e) => {
     const thumbSelected = e.target.parentElement;
-    const imgSelected = e.target.attributes.src.value
-    // thumbSelected.classList.add("active");
+    const imgSelected = e.target.attributes.src.value;
+
     thumbnailImgChoice(thumbSelected, imgSelected);
+    if (check === false) {
+        addCaruselContent(0);
+        check = true;
+    } else {
+        infiniteCycle(e.target.className);
+        addCaruselContent(counter);
+    }
 })
 
 prevImg.addEventListener('click', (e) => {
@@ -118,33 +126,64 @@ function colorCheck(info, number) {
     }
 }
 
-
 function thumbnailImgChoice(thumbSelected, imgSelected) {
+    check = true;
     switch (imgSelected) {
         case 'img/01.webp':
             counter = 0;
+            if (previousActive === undefined) {
+                previousActive = thumbSelected;
+            } else {
+                previousActive.classList.remove('active');
+                previousActive = thumbSelected;
+            }
+            thumbSelected.classList.add('active');
             addCaruselContent(counter);
-            thumbSelected.classList.add("active");
             break;
         case 'img/02.webp':
-            thumbSelected.classList.add("active");
             counter = 1;
+            if (previousActive === undefined) {
+                previousActive = thumbSelected;
+            } else {
+                previousActive.classList.remove('active');
+                previousActive = thumbSelected;
+            }
+            thumbSelected.classList.add('active');
             addCaruselContent(counter);
             break;
         case 'img/03.webp':
             counter = 2;
+            if (previousActive === undefined) {
+                previousActive = thumbSelected;
+            } else {
+                previousActive.classList.remove('active');
+                previousActive = thumbSelected;
+            }
+            thumbSelected.classList.add('active');
             addCaruselContent(counter);
-            thumbSelected.classList.add("active");
             break;
         case 'img/04.webp':
             counter = 3;
+            if (previousActive === undefined) {
+                previousActive = thumbSelected;
+            } else {
+                previousActive.classList.remove('active');
+                previousActive = thumbSelected;
+            }
+            thumbSelected.classList.add('active');
             addCaruselContent(counter);
-            thumbSelected.classList.add("active");
             break;
         case 'img/05.webp':
             counter = 4;
+            if (previousActive === undefined) {
+                previousActive = thumbSelected;
+            } else {
+                previousActive.classList.remove('active');
+                previousActive = thumbSelected;
+            }
+            thumbSelected.classList.add('active');
             addCaruselContent(counter);
-            thumbSelected.classList.add("active");
             break;
     }
 }
+

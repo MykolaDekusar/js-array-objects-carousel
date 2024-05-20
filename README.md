@@ -1,8 +1,3 @@
-Dato un array di oggetti letterali con:
- - url dell’immagine
- - titolo
- - descrizione
-Creare un carosello come nella foto allegata.
 Milestone 0:
 Analizzate l'html statico (è una base da cui partire) del carosello per comprenderne al meglio la struttura da manipolare.
 Milestone 1:
