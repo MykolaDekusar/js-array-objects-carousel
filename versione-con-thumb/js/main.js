@@ -33,6 +33,7 @@ const prevImg = document.querySelector(".prev");
 const nextImg = document.querySelector(".next");
 const thumbs = document.querySelector(".thumbs");
 let contatore = 0;
+let posNeg = true;
 
 //CREATION OF ELEMENT
 const div = document.createElement("div");
@@ -45,6 +46,7 @@ const image = document.querySelector(".item img");
 image.src = images[contatore].image;
 
 prevImg.addEventListener("click", () => {
+  posNeg = false;
   if (contatore === 0) contatore = 5;
   contatore--;
   thumbsActive(contatore);
@@ -52,8 +54,9 @@ prevImg.addEventListener("click", () => {
 });
 
 nextImg.addEventListener("click", () => {
+  posNeg = true;
   contatore++;
-  if (contatore > 4) contatore = 0;
+  if (contatore === 5) contatore = 0;
   thumbsActive(contatore);
   image.src = images[contatore].image;
 });
@@ -69,26 +72,31 @@ function thumbsSelector(imageNumber) {
     case "img/01.webp":
       contatore = 0;
       thumbsActive(contatore);
+
       image.src = images[contatore].image;
       break;
     case "img/02.webp":
       contatore = 1;
       thumbsActive(contatore);
+
       image.src = images[contatore].image;
       break;
     case "img/03.webp":
       contatore = 2;
       thumbsActive(contatore);
+
       image.src = images[contatore].image;
       break;
     case "img/04.webp":
       contatore = 3;
       thumbsActive(contatore);
+
       image.src = images[contatore].image;
       break;
     case "img/05.webp":
       contatore = 4;
       thumbsActive(contatore);
+
       image.src = images[contatore].image;
       break;
   }
@@ -106,23 +114,41 @@ const selectedDiv = document.querySelectorAll(".thumb");
 contatore = 0;
 thumbsActive(contatore);
 
-function thumbsActive(num) {
+function thumbsActive(contatore) {
   for (let i = 0; i <= selectedDiv.length - 1; i++) {
     selectedDiv[i].classList.remove("active");
   }
-  selectedDiv[num].classList.add("active");
+  selectedDiv[contatore].classList.add("active");
 }
 
 //BONUS 2
-timer();
-function timer() {
-  contatore = 0;
-  const setTimer = setInterval(() => {
+let setTimer;
+function startCounter() {
+  setTimer = setInterval(timer, 1000);
+  function timer() {
+    if (posNeg === true) {
+      contatore++;
+      if (contatore === 5) contatore = 0;
+    }
+    if (posNeg === false) {
+      if (contatore === 0) contatore = 5;
+      contatore--;
+    }
     image.src = images[contatore].image;
     thumbsActive(contatore);
-    contatore++;
-    if (contatore === 5) contatore = 0;
-  }, 3000);
+  }
 }
-
-//BONUS2
+function stopCounter(setTimer) {
+  clearInterval(setTimer);
+}
+//BONUS 3
+function reverse() {
+  if (posNeg === true) {
+    posNeg = false;
+    return;
+  }
+  if (posNeg === false) {
+    posNeg = true;
+    return;
+  }
+}
